@@ -1,0 +1,44 @@
+.btn-next{
+    background-color: rgba(125,125,125,0.4);
+    height: 100px;width: 50px;
+    top:200px;
+    border-radius: 0.25rem;
+}
+.btn-prev{
+    background-color: rgba(125,125,125,0.4);
+    height: 100px;width: 50px;
+    top:200px;
+    border-radius: 0.25rem;
+}
+.carousel-indicators li{
+    width: 14px;height: 14px;
+    background: #fff;
+    margin-right: 10px;
+    margin-left: 10px;
+    border-radius: 50%;
+}
+.carousel-indicators .active{
+    background: #0aa1ed;
+}
+.flower-1{
+    width: 100px;
+    height: 3px;
+    background-color: black;
+    margin-top: 15px;
+}
+.flower{
+    margin-left: 315px;
+}
+.flower-btm{
+    height: 480px;
+}
+img{
+    display: block;
+}
+.img-1{
+    width: 350px;height: 180px;
+}
+.img-2{
+    width: 170px;
+    height: 180px;
+}

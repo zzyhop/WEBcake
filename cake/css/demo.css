@@ -1,0 +1,83 @@
+﻿*{
+  margin: 0;
+  padding: 0;
+}
+.national-top-banner{
+  width: 100%;
+}
+.national-top-banner img{
+  width: 100%;
+}
+.bc,p{
+  text-align: center;
+  cursor: pointer;
+}
+p{
+  color: #BB9772;
+}
+.bc{
+  font-size: 14px;
+  line-height: 20px;
+  color: #684029;
+}
+.bc:hover{
+  color: #BB9772;
+}
+.button{
+  display: block;
+  background: #684029;
+  width: 136px;
+  height: 30px;
+  text-align: center;
+  line-height: 30px;
+  color: #f5f5f5;
+  margin: 0 auto;
+}
+.dds{
+  font-size: 15px;
+}
+@media screen and (max-width:576px){
+
+  .national-top-banner img{
+     width: 100%;
+     height: 280px;
+  }
+  .ss{
+    display: none;
+  }
+}
+
+label{
+  display: inline-block;
+  width: 75px;
+  color: #b3b3b3;
+  line-height: 40px;
+  vertical-align: top;
+  font-size: 13px;
+}
+input{
+  height: 38px;
+  width: 160px;
+  padding-left: 8px;
+  border: 1px solid #efefef;
+  font-size: 13px;
+}
+select{
+  padding: 0;
+  width: 168px;
+  margin-left: -4px;
+  margin-right: 15px;
+  outline: none;
+  font-size: 13px;
+  height: 38px;
+}
+.btnn{
+  margin-top: 30px;
+  display: block;
+  height: 34px;
+  width: 232px;
+  color: #fff;
+  text-align: center;
+  line-height: 34px;
+  background: #c0c0c0;
+}

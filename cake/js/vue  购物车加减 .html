@@ -1,0 +1,103 @@
+﻿<!DOCTYPE HTML>
+<html>
+<head>
+<title>使用Selector API实现购物车客户端计算</title>
+<meta charset="utf-8" />
+<style>
+	table{width:600px; text-align:center;
+		border-collapse:collapse;
+	}
+	td,th{border:1px solid black}
+	td[colspan="3"]{text-align:right;}
+</style>
+
+</head>
+<body>
+	<table id="data">
+		<thead>
+			<tr>
+				<th>商品名称</th>
+				<th>单价</th>
+				<th>数量</th>
+				<th>小计</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr  v-for="(p,i) of list" :key="i">
+				<td>{{p.phoneName}}</td>
+				<td>¥{{p.phonePrice}}</td>
+        <td>
+          <button @click="dda(p)">-</button>
+          <input oninput = "value=value.replace(/[^\d]/g,'')" maxlength="2" minlength="1" style="width: 15px;text-align: center" v-model="p.id>9?p.id=9:p.id<1?p.id=1:p.id=p.id" ></input>
+          <button  @click="add(p)">+</button>
+        </td>
+				<td>¥{{tota}}</td>
+			</tr>
+		</tbody>
+		<tfoot>
+			<tr>
+				<td colspan="3">Total: </td>
+				<td>¥{{sum}}</td>
+			</tr>
+		</tfoot>
+	</table>
+	<script src="vue.js"></script>
+	<script>
+		var vm=new Vue({
+			el:"#data",
+			data(){
+				return {
+					sum:"",
+					tota:this.list[0].phonePrice,
+				list:[
+						{id:1,phoneName:"男装1",phonePrice:1000},
+						{id:2,phoneName:"男装2",phonePrice:2000},	
+					],
+					
+				}
+			},
+			methods: {
+				//将遍历好的属性 p 从点击事件里面传进来
+				add(p){
+					if(p.id==9){
+						p.id=9
+					}else{
+				p.id++}
+				},
+				dda(p){
+					if(p.id==1){
+						p.id=1
+					}else{
+				p.id--}
+				},
+				Subtotal(){
+					for(p of this.list){
+						var pric=parseInt(p.phonePrice);
+						var ids=parseInt(p.id);
+						tota=pric*ids;
+						
+					}		
+					this.tota=tota;	
+					console.log(tota)		 
+				},
+				
+				Total(){
+					var total=0;
+					var subs=parseInt(this.Subtotal());
+					this.sum=total+=subs
+				},
+			},
+			created(){
+				this.Subtotal()
+				this.Total()
+			},
+
+			computed: {
+			
+			},
+			
+		})
+		
+	</script>
+</body>
+</html>

@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+	<title>客服中心</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="apple-mobile-web-app-status-bar-style" content="black">
+	<!--微信不缓存东西  start-->
+	<meta http-equiv="Pragma" content="no-cache" />
+    <meta http-equiv="Expires" content="0" />
+    <script src="js/jquery.min.js"></script>
+    <script src="js/popper.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/jquery-1.11.3.js"></script>
+	<style type="text/css">
+		.myclass{
+			width:100%;
+			font-size: 12pt;
+			padding-bottom: 10px;
+		}
+		.myclass span{
+			width:100px;
+			background-color: #66b3ff;
+			border: 1px;
+		}
+	</style>
+	
+	<!-- <script type="text/javascript">
+		var oldId = 1;
+		//计算时间间隔
+		function computeTime(oldTime){
+			date = new Date(oldTime);
+			var date2 = date.getTime()-datetemp.getTime();
+			//一分钟内再次发消息，则不显示发送消息的时间
+			if(date2>60000){
+				var flagH="";
+				var flagM="";
+				var hour = date.getHours();
+				var min= date.getMinutes();
+				//解决小时和分钟小于10，数字前面不显示0的情况
+				if(hour<10)flagH="0";else flagH="";
+				if(min<10)flagM=":0";else flagM=":";
+				//发送内容时间
+				$("#contentCS").append("<div style='text-align:center ;'>"+flagH+hour+flagM+min+"</div>")
+				datetemp=date;
+			}
+		}
+		
+		function getAllRecord(){
+			$.ajax({
+			//    url : "${path}/cs/getAllChatRecord?idTemp=user_id&id="+id+"&oldId="+oldId,
+			   type : "POST",
+		       dataType:"json",
+		       data :null,
+	    	   success : function(data) {
+					if (data.success) {
+						//将聊天信息显示到页面上
+						for ( var i in data.obj) {
+							var csChatRecord = data.obj[i];
+							if(csChatRecord.userContent != null && csChatRecord.userContent != ''){
+								computeTime(csChatRecord.time); 
+						        $("#contentCS").append("<div class='myclass' style='text-align:right ;'><span>"				
+										+csChatRecord.userContent
+								+"</span></div>");				
+							}
+							if(csChatRecord.customerContent != null && csChatRecord.customerContent != ''){
+								computeTime(csChatRecord.time); 
+								$("#contentCS").append("<div class='myclass'><span>"				
+										+csChatRecord.customerContent
+								+"</span></div>");
+							}
+							oldId=csChatRecord.id;
+						}
+					} else {
+						alert(data.msg);
+					}
+				} ,	
+		       error:function(result){
+		             alert("服务器丢了");
+		         }	
+		     });
+		}
+		//获取左侧正在沟通的用户列表
+		function getCustomerList(){
+			$("#westList").html("");
+			$.ajax({
+			   url : "${path}/cs/getCustomerList",
+			   type : "POST",
+		       dataType:"json",
+	    	   success : function(data) {
+					if (data.success) {
+						var onlineFlag=1;
+						//用户下线，如果客服人员正在与此人沟通，那么清空聊天页面
+						for ( var i in data.obj) {
+							var customer = data.obj[i];
+							if(id==customer.id){
+								onlineFlag=0;
+							}
+						}
+						if(onlineFlag==1){
+							$("#contentCS").html("");
+							id="";
+						}
+						//获得用户列表，显示到页面上
+						for ( var i in data.obj) {
+							var customer = data.obj[i];
+							cId=customer.id;
+							var cHeadImg=customer.headImg;
+							var cName=customer.name;
+							
+							if(customer.online >0){
+						        $("#westList").append(
+						        	"<div id="+cId+" class='CustomerBG'><img alt='加载中' src='${path }/module/cs/images/"
+										+cHeadImg
+										+"' height='40px' width='40px' >"
+						        	+"<label id='labelId' class='checkLabel' style='font-size: 12pt;'data_id='"				
+										+cId
+										+"'>"
+						        		+cName
+						        	+"</div>");
+							}
+							//防止列表刷新将选中的用户置为未选中状态
+					        if(cId==id){
+								$("div#"+cId).css('background','#00ffff');
+					        }
+						}
+					} else {
+						alert(data.msg);
+					}
+				} ,	
+		       error:function(result){
+		             alert("服务器丢了");
+		         }	
+		     });
+		}
+		var datetemp=new Date(0);//用于计算时间差的中间变量
+		var date;
+		$(function(){
+			//获取用户列表
+			getCustomerList();
+			//定时刷新
+			setInterval('getCustomerList()',1000);
+			//消息存入数据库
+			$("#send").click(function() {
+				$.ajax({
+				   url : "${path}/cs/saveUserChatRecord?id="+id,
+				   type : "POST",
+			       dataType:"json",
+			        /* 向后端传输的数据 */ 
+			       data :$("#ff").serialize(),
+		    	   success : function(data) {
+						if (!data.success) {
+							alert(data.msg);
+						} 
+						$("#textId").textbox('clear');
+					} ,	
+			       error:function(result){
+			             alert("发送失败");
+			         }	
+			     });
+			});
+		});
+		var id = "";
+		$(document).off("click", ".checkLabel").on("click", ".checkLabel", function(){
+			oldId = 1;
+			datetemp=new Date(0);
+			id = $(this).attr("data_id");
+			$(".CustomerBG").css('background','#ffffff');
+			$("div#"+id).css('background','#00ffff');
+			$("#contentCS").html("");
+			$("#contentCS").append("<div class='myclass'>当前正在沟通的用户："+$(this).text()+"</div>");
+			//从数据库读取消息
+			getAllRecord();
+			// 定时刷新组件，读取数据库信息 
+			setInterval('getAllRecord()',1000);
+		});
+	</script> -->
+</head>
+<body>
+	<div id="cc" class="easyui-layout" style="width:600px;height:500px;" fit="true">   
+	    <!-- <div data-options="region:'north'" style="height:10%"></div>   --> 
+	    <div data-options="region:'south'" style="height:30%;">   
+	    	<form id="ff" style="height:100%;width:100%" >   
+			    <div>   
+			        <input id="textId" class="easyui-textbox" name="userContent" style="height:120px;width:100%;border: 0;" multiline="true" prompt="说点什么吧..." />   
+			    </div>  
+			    <div style="float:right" >   
+					<button type="button" id="send" >发送</button>
+			    </div>   
+			</form>  
+		</div>
+	    <!-- <div data-options="region:'east'" style="width:10%;"></div>    -->
+	    <div id="westList" data-options="region:'west'" style="width:20%;">
+	    	正在沟通的用户
+		    <button type="button" id="list" style="display: none"></button>
+	    </div>   
+	    <div id="contentCS" data-options="region:'center'" style="padding:5px;" >
+	    	
+	    </div>   
+	</div>   
+</body>
+</html>

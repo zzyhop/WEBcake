@@ -1,0 +1,389 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>登陆页面</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- 导入顺序固定 -->
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <script src="js/jquery.min.js"></script>
+    <script src="js/popper.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/jquery-1.11.3.js"></script>
+    <script src="js/vue.js"></script>
+	<script type="text/javascript" src="js/jquery.min.js"></script>
+    <style>
+        a:hover{
+            text-decoration: none;
+        }
+	    .pro-bg{
+		    background:url("images/pro-login-image.jpg");
+            z-index:1
+		}
+        .log-bg{
+             /*background:#999;*/
+            /*opacity: 0.9;*/
+        background: rgba(124,125,125,0.3)
+
+        }
+        .log-height{
+            height: 255px;
+        }
+		/* 文字飘落 */
+        .test1{
+			position: absolute;
+			color: transparent;
+			-webkit-background-clip: text;
+			background-clip:text; /*背景只显示有文字的地方*/
+        }
+        /*@media screen and ( min-width: 992px) {*/
+            /*.mispwd{*/
+                /*margin-left: -35px;*/
+            /*}*/
+            /*.reg a{*/
+                /*margin-left: -8px;*/
+            /*}*/
+            /*.reg{*/
+                /*margin-left: 75px;*/
+            /*}*/
+            /*#img{margin-top: 26px}*/
+        /*}*/
+        @media screen and (  max-width: 991px) {
+
+            #img{margin-top: 31px;}
+            .reg{margin-left: 83px}
+            .reg a{margin-left: -14px;}
+            .mispwd{margin-left:-50px;margin-top: 10px}
+           #img img{
+              width: 95px !important;
+           }
+        }
+       @media screen and ( max-width: 767px) {
+          .reg{margin-left: 81px}
+           .reg a{margin-left: -31px}
+           .list-unstyled  li{padding: 0}
+           .mispwd{margin-left: -124px;margin-top: 12px;}
+       }
+        @media screen and (max-width: 576px) {
+            .weixin{
+                padding-right: 0;
+                font-size:14px
+            }
+            .nav-link{
+                font-size:13px
+            }
+            .list-unstyled li{padding: 0}
+            .reg{margin-left: 53px;font-size:14px }
+            .nav-item{padding: 0}
+			.mispwd{margin-left:-160px;margin-top: 10px}
+        }
+        
+		.bg_use{
+		   background:url(images/yhm.png) no-repeat;
+           background-position: center left;
+		}
+        .bg_pwd{
+            background: url("images/mm.png") no-repeat;
+            background-position: center left;
+        }
+        .tab-pane  input{
+               padding-left: 30px;
+           background-color: rgba(255,255,255,0.5);
+        }
+        .msr{
+          background-color: #fff;
+            opacity: 0.6;
+        }
+     </style>
+	 <script type="text/javascript">
+$(function(){
+	setInterval(function(){
+		var content = ['✿','♫','❤','✪'];//文字图案数组
+		var test = $('<div class="test1"></div>').text(content[parseInt(Math.random()*7)]);
+		var pageWidth = $('.page').width();//页面宽度
+		var x = Math.random()*(pageWidth)-100;//开始横向位置
+		var deg = Math.random()*360;//开始旋转角度
+		var size = 10 + Math.random()*30;//文字图案的大小
+		var duration = 5 + Math.random()*2;//transition动画执行时间
+		var colorArray =['0','1','2','3','4','5','6','7','8','9','a','b','c','d','e','f'];
+		var beginColor = '#';//背景渐变开始颜色
+		var endColor = '#';//背景渐变结束颜色
+		var endPositionX = parseInt(Math.random()*100+50);//结束位置的横向位置
+		var endHeight = document.documentElement.clientHeight - 65 - parseInt(Math.random()*40);//结束高度
+		for(var i =0; i<6; i++){
+			beginColor+=colorArray[parseInt(Math.random()*15)];
+			endColor+=colorArray[parseInt(Math.random()*15)];
+		}
+		test.appendTo('.page')
+			.css({
+				transform:'translate3d('+ x +'px,-100px,0)' + 'rotateZ('+ deg +'deg)',
+				'font-size':size + 'px',
+				'background-image':'-webkit-linear-gradient('+beginColor+','+endColor+')',//渐变背景
+			});
+			setTimeout(function(){
+				test.css({
+					transition:'all '+ duration +'s linear',
+					opacity:'0.4',
+					transform:"translate3d("+ endPositionX +"px,"+endHeight+"px,0) rotateZ(360deg)",
+				});
+			},100);//延迟0.1秒是因为js执行过快把后面的transform覆盖前面的transform,造成效果丢失
+			setTimeout(function(){
+				test.remove();
+			},duration*1000);
+	},1000);
+	
+});
+</script>
+</head>
+<body class="pro-bg"  >
+<div id="header" ></div>
+ <!-- 背景 -->
+ <div class="page">
+	<div class="test">
+		
+	</div>
+</div>
+<!-- <h3>好的代码像粥一样，都是用时间熬出来的</h3> -->
+<br/><br/><br/><br/>
+<div class="container " >
+    <div class=" m-auto w-50 log-bg">
+        <div class="text-center">欢迎登陆</div>
+        <div class=" text-center log-height  ">
+            <ul class=" nav m-auto nav-pills form-inline  ">
+                <li class="nav-item col-6 " ><a href="#img" class="nav-link active border-0  " data-toggle="pill">扫码登陆</a></li>
+                <li class="nav-item col-6" ><a href="#input" class="nav-link border-0" data-toggle="pill">账号登陆</a></li>
+            </ul>
+            <div class="tab-content  text-center mt-1 ">
+                <div  id="img" class="tab-pane active "><img src="images/二维码.png" alt="" class="w-25 "/>
+                    <p  class="col-12 mt-1">打开手机扫码</p>
+                    <ul class="list-unstyled row font-weight-light ">
+                        <li class="col-3 offset-1 "  >免输入</li>
+                        <li class="col-3">更快</li>
+                        <li class="col-3">更安全</li>
+                    </ul>
+                </div>
+
+                <div id="input" class="tab-pane px-4 pt-0 ">
+                    <p style="height:21px"> </p>
+                    <input type="text" placeholder="输入用户名" class="form-control col-12 bg_use" id="uname" name="uname" />
+                    <input type="password" placeholder="密码" class="form-control col-12  mt-2 bg_pwd" id="upwd" name="upwd"/>
+                    <p class="mispwd"><a href="#" class="col-4 offset-8 ">忘记密码？</a></p>
+                    <button id="btn" class="btn btn-danger  col-12 " ><a >登录</a></button>
+
+                </div>
+            </div>
+        </div>
+        <div>
+            <ul class="form-inline list-unstyled">
+                <li class="col-2 pr-0 text-center" ><a href="#">QQ</a></li>
+                <li class="col-1   "><span>|</span></li>
+                <li class="col-2 pl-0 text-center weixin"><a href="#">微信</a></li>
+                <li class="col-3 offset-4 reg "><a href="http://127.0.0.1:8050/register.html" >快速注册</a></li>
+            </ul>
+        </div>
+    </div>
+     
+</div>
+  <script language="javascript">
+        var input = document.getElementById("input");
+           //找到input下的type为text的文本框得到焦点判断
+              //找到input下的type为password的文本框得到焦点判断
+           var text = input.children[1]
+         
+           var pwd = input.children[2]
+           
+           //得到用户框焦点时 提示函数
+          pwd.onfocus= text.onfocus = function () {
+               var text = this;
+               input.children[0].innerHTML = ` <img src="img/提示.png" alt="" />请输入用户名或密码`;
+                 $("#input").children(":first").css({"color":"rgb(100,0,0)"})
+           }
+             
+   pwd.onblur= text.onblur= function (){
+    
+        if(!uname.value){
+           input.children[0].innerHTML = `用户名为空`;
+           $("#input").children(":first").css({"color":"rgb(100,0,100)"})
+            return;
+        }
+       /*if(!upwd.value){
+             input.children[0].innerHTML = `密码为空`
+            return;
+        }*/
+        //创建对象  http://127.0.0.1:8050/user/login
+//         $.ajax({
+//     url:' /user/login',
+//     type:'post',
+//     async:true,
+//     // data:"uname="+uname.value+"&upwd="+upwd.value,
+//     dataType: 'jsonp',
+//     success:function(data){
+//         console.log(data)
+//     }
+// })
+        var xhr=new XMLHttpRequest();
+        //打开连接
+       var url=" http://127.0.0.1:8050/user/login"
+        xhr.open("get"," http://127.0.0.1:8040/user/login",true)
+        xhr.setRequestHeader("Content-type","application/x-www-form-urlencoded")
+        //发送请求
+        var formdata="uname="+uname.value+"&upwd="+upwd.value;
+        
+        xhr.send(formdata)
+        //响应
+
+        xhr.onreadystatechange=function(){
+
+            if (xhr.readyState==4&&xhr.status==200){
+               var  result=xhr.responseText;//返回的是json对象
+              console.log(result)
+             
+               //将字符串按，分割
+              
+          
+                //var reg=/^\d$/
+               
+              //var add=input.children[0].innerHTML = ` <img src="img/true.png" alt="Alternate Text" />用户名存在`;
+
+                /*
+                   
+                }*/
+                 if (result=="不存在用户") {
+                     console.log( $("#input").children(":first") )
+                   $("#input").children(":first").html(` <img src="" alt="" />用户名不存在`);
+                   $("#input").children(":first").css({"color":"red"})
+                }
+                 if(result=="登陆成功"){
+                    
+                          $("#input").children(":first").html(` <img src="img/true.png" alt="" />正确`);
+                          $("#input").children(":first").css({"color":"green"})
+                             //计时器
+                             
+                            close() 
+                            setTimeout(function(){
+                                 location.replace("index.html"); 
+                            },3500)
+                           
+                            
+
+
+
+
+
+
+
+
+                         /* for(var i=2;i>-1;i--){
+                              console.log(i)
+                              $("#zIndex").show()
+                              $("#zIndex").html(`登录成功，${i--}秒跳到主页`).fadeOut(5000)
+                                    console.log(1111111)
+                                
+                          }*/
+                       /*var com= setInterval(function(){         
+                            console.log(1111)
+                         for(var i=2;i>-1;i--){
+                          /*setInterval(function(){
+                              $("#btn").click(function(){
+                                  $("#btn").show().fadeOut(3000);
+                              })
+                               
+                              
+                              
+                                    $("#btn>a").attr("href","http://127.0.0.1:8050/user/jup")
+                                    
+                                   console.log(result)
+                            },3000)*/
+                                 /*var mm=confirm(`${i}`)*/
+                                /* console.log(222)
+                                 $("#zIndex").show().html(i)
+                                 
+                           
+                          if(i==0){
+                              clearInterval(com)
+                          } 
+                         }//循环结束
+                         
+                             
+                          /*  alert(`登录成功，还有${n--}秒跳到主页`)*/
+                           /* if(n==0){
+                                clearInterval();
+                                console.log(n)
+                            }*/
+                        //})//定时器借宿*/
+                        
+                   var vm=new Vue({
+                        el:"#input",
+                        data:{
+                            
+                            inner:" "
+                        }
+                   })      
+
+                }
+                 
+                     /*var resUname= JSON.parse(result).$uname
+                       var resUpwd=JSON.parse(result).$upwd*/
+                    if(result=="密码错误"){
+                        $("#input").children(":first").html(` <img src="img/true.png" alt="" />用户名存在,密码错误`);
+                        $("#input").children(":first").css({"color":"green"})  
+                        
+                    }
+                  /*else{
+                             $("#input").children(":first").html(` <img src="" alt="" />密码错误`);
+                          $("#input").children(":first").css({"color":"rgb(200,100,100)"}) 
+                          }*/
+                 
+               /* //把传回来的json字符串转为js对象数组
+                if(result=="不存在用户"){
+                    alert("登录失败");
+                  
+                } else if (result=="密码错误"){
+                    alert("密码错误");
+                    
+                }else{
+                alert("登录成功");
+                 console.log(result)
+                }*/
+            //text框失去焦点验证从后端传回来的数据
+            
+               
+            
+            
+            
+          
+      
+
+
+
+               
+            }
+            
+             
+       }
+     
+}
+     //提示框事件
+                   
+       var time=3
+   function close(){  
+                            var ss= setTimeout('close()',1000);  
+                                if(time>0){  
+                                   
+                                     $("#zIndex").show().html(`登录成功，<font color=red>${time}</font>秒跳到主页`).fadeOut(5000) 
+                                    time--;  
+                                }  
+                                else{  
+                                 
+                                    clearTimeout(ss)
+                                       $("#btn>a").attr("href","http://127.0.0.1:8050/user/jup")
+                                }  
+                            }         
+
+</script>
+ <div  id="zIndex"style="height:60px;width:200px;border: 1px solid; z-index:100;
+    margin:-240px auto;display:none;text-align:center ;line-height:60px;background:rgb(193, 201, 160))"></div>
+<script src="../js/header.js"></script>
+
+</body>
+</html>

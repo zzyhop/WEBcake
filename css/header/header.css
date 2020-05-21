@@ -1,0 +1,109 @@
+<style>
+	  *{margin:0;padding:0}/*清除所有元素内外边距*/
+	  ul{
+	    list-style:none;/*清除列表默认样式*/
+	  }
+	  /* 将header中的所有a标签下划线去掉  颜色改变*/
+	  a{
+	    text-decoration:none;
+        color:#666;
+	  }
+	  /*所有 a标签悬停时变为红色*/
+	  a:hover{
+	    color:red;
+	  }
+	  /*设置捷径栏背景颜色*/
+	  .shortcut-bg{
+	    background:#ccc;
+	    opacity:0.5;
+	  }
+	  /*header中捷径栏样式*/
+	  .shortcut{
+	    width:990px;
+		margin:0 auto; 
+		position:relative;
+		
+	  }
+	  /*捷径导航的高度坍塌解决*/
+      .shortcut:after{
+	    content:"";
+		display:block;
+		clear:both;
+	  }
+	  /*捷径栏的地址样式*/
+	  .address{
+        position:absolute;
+		margin-left:190px;
+		line-height:30px;
+	  }
+	  /*捷径栏右边栏样式*/
+	  .shortcut-r{
+		float:right;
+      
+	  }
+	  /*捷径栏右边栏中li样式*/
+      .shortcut-r>li{
+	    
+	    float:left;
+		line-height:30px;
+	  }
+	  /*li间的间距*/
+	  li~li{
+	    margin-left:30px;
+	  }
+      /*分隔符*/
+	  .line{
+	    width:1px;height:13px;
+		background:#666;
+        margin-top:10px;
+	  }
+	  /*头部的search与nav大体位置*/
+	  .header{
+	    width:990px;
+		margin:0 auto; 
+		position:relative;
+		
+	  }
+	  /*搜索块样式*/
+      .search-block{
+	    margin-left:250px;
+	  }
+	  /*搜索块中input*/
+      .search-input{
+	    width:400px;height:35px;
+		border-radius:5px;
+		outline:none;
+	  }
+	   /*搜索块中btn*/
+	  .search-btn{
+	    display:inline-block;
+	    width:50px;height:35px;
+		border-radius:5px;
+	  }
+	  /* 推荐搜索的 弹性布局*/
+	  .search-rec-item{
+	    width:400px;height:20px;
+	    display:flex; /*变为弹性容器*/
+		justify-content:space-around; /*定义li的弹性布局 两端对齐*/
+        align-items:center;/*垂直居中*/
+	  }
+	  /*定义nav栏的位置*/
+	  .nav{
+	    width:750px;height:40px;
+		/* background:rgba(0,0,0,0.3); */
+		margin:0 auto;
+	  }
+	  .nav-item{
+		margin-left:35px;
+	  }
+	  /*nav的li*/
+	  .nav-item>li{
+	    float:left;
+		padding-right:17px;
+		margin-top:10px;
+	  }
+	  /*每隔3个li添加右边框*/
+	  .nav-item>li:nth-child(3n){
+	    border-right:1px solid #666;
+	  }
+	</style>

@@ -1,0 +1,22 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>一个例子</title>
+<script type="text/javascript">
+var t = 100; //在这里设置刷新时间，单位是毫秒，比如1秒钟就是1000
+var min = 200; //生成的最小的数字，比如200
+var max = 500; //生成的最大的数字，比如500
+var ctl_id = "show"; //要在哪个控件中显示，比如例子中的"show"
+onload = function() {
+Refresh();
+setInterval("Refresh();", t);
+}
+function Refresh() {
+document.getElementById(ctl_id).innerHTML = parseInt(Math.random() * (max - min + 1) + min);
+}
+</script>
+</head>
+<body>
+<div id="show"></div>
+</body>
+</html>

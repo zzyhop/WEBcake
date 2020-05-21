@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>JS 倒计时</title>
+</head>
+<body>
+  <div id="test"></div>
+  <script src="./js/jquery.min.js"></script>
+  <script>
+  function NextTime(next, cb) {
+    var t;
+    (function ft(){
+        var dif = (next.getTime() - (new Date()).getTime()) / 1000;
+        if(dif > 0){
+            t = setTimeout(ft, 100);
+            if(cb)
+                cb(Math.floor(dif % 86400 / 3600),  Math.floor(dif % 3600 / 60), Math.floor(dif % 60));
+        } else {
+            clearTimeout(t);
+        }
+    })();
+    return function(){
+        clearTimeout(t);
+    };
+}
+ 
+function lpad(num, n) {
+	var len = num.toString().length;
+	while(len < n) {
+		num = "0" + num;
+		len++;
+	}
+	return num;
+}
+ 
+var now  = new Date();
+var next = new Date(now.getFullYear(), now.getMonth(), now.getDate() + 1);
+new NextTime(next, function(hour, minute, second){
+  document.getElementById("test").innerHTML=lpad(hour, 2) + ':' + lpad(minute, 2) + ':' + lpad(second, 2);
+}); 
+  </script>
+</body>
+</html>

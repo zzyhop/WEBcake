@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="apple-mobile-web-app-status-bar-style" content="black">
+	<link rel="stylesheet" type="text/css" href="../css/public.css"/>
+	<link rel="stylesheet" type="text/css" href="../css/verify.css"/>
+	<script src="../js/jquery.min.js" type="text/javascript" charset="utf-8"></script>
+	<script src="../js/style.js" type="text/javascript" charset="utf-8"></script>
+	<script src="../js/jQuery.md5.js" type="text/javascript" charset="utf-8"></script>
+	<script src="../js/verify.js" type="text/javascript" charset="utf-8"></script>
+	<script src="../layer/layer.js" type="text/javascript" charset="utf-8"></script>
+	<title>超级豆购买</title>
+</head>
+<body>
+    <div>
+    
+        <div>
+       <mt-header title="超级豆">
+         <router-link to="" slot="left">
+        <mt-button icon="back">返回</mt-button>
+          </router-link>
+          <mt-button slot="right" class="right">
+              <img src="../../assets/K/豆.png" alt="" class="dou"> 
+            <span style="color:black">  排行榜</span>
+            
+          </mt-button>
+         </mt-header>
+        </div>
+        <!-- 背景 -->
+        <div class="show ">
+             <div class="show1 ">当前豆堆的数量</div>
+             <div class="show2 m-1">{{231321321313}}</div>
+             <div class="show3 m-1">超过24小时无人购买奇豆</div>
+             <div class="show4 m-1">最后购买者获得豆堆的所有豆</div>
+             <div class="show5 mt-1">玩法规则 ></div>
+             <dir class="show6">
+                 
+             </dir>
+        </div>
+        <!-- 最后一位 -->
+        <div class="lastdiv">
+              <div class="last">
+                  <!-- 公告 -->
+                  <div class="advdiv">  
+                    <div class="round"></div>
+                    <div class="adv">
+                        <div class="adv1">
+                            <div class="bianhao">{{123}}</div>
+                            <div class="msglast">最后购买者</div>
+                        </div>
+                         <div class="adv2">
+                             豆卡号：53451
+                         </div>
+                    </div>
+                  </div>
+              </div>
+        </div>
+        <!-- 倒计时 -->
+        <div class="time m-1">结束倒计时：<span id="test"> </span>
+        </div>
+        <!-- 购买 -->
+        <div class="gou" >购买豆卡 抢豆堆</div>
+        <div class="toast">*每个豆卡，都可持续获得奇豆</div>
+        <!-- 豆数 -->
+        <div style="width:90%;  margin: 1.5rem auto">
+            <div class="dounum">
+                <div>当前豆卡总数</div>
+                <div>{{231352123}}</div>
+            </div>
+            <div class="dounum">
+                <div>总计获得矿石的收益</div>
+                <div>{{223545423}}</div>
+            </div>
+            <!-- 我的 -->
+            <div class="my">
+                <div><img src="../../assets/K/豆.png" alt="" ></div>
+              <div class="dounum">
+                <div>我的豆卡</div>
+                <div>{{231352123}}</div>
+              </div>
+             <div class="dounum">
+                <div>获得奇豆收益</div>
+                <div>{{231352123}}</div>
+             </div>
+             <div class="bottom" >奇豆每5分钟结算一次</div>
+            </div>
+        </div>
+    </div>
+    <script>
+        var oSpan = document.getElementById('test');
+ function tow(n) {
+  return n >= 0 && n < 10 ? '0' + n : '' + n;
+ }
+ function getDate() {
+  var oDate = new Date(2019,1,1);//获取现在日期对象
+  var oldTime = oDate.getTime();//现在距离1970年的毫秒数
+  var newDate = new Date(2019,1,2); //后一天的日期;//获取指定日期对象
+  var newTime = newDate.getTime();//距离1970年的毫秒数
+  var second = Math.floor((newTime - oldTime) / 1000);//1天时间距离的秒数
+ 
+  setInterval(function(){
+      second--
+      var day= parseInt(second/(24*60*60))//tian
+
+
+  var hour=parseInt(second/(60*60))
+  var  minute= parseInt(second/ 60 % 60);//计算剩余的分钟
+   var miao=parseInt(second % 60);//计算剩余的秒数 
+   var str = 
+    + tow(hour) + '<span class="time">小时</span>'
+    + tow(minute) + '<span class="time">分钟</span>'
+    + tow(miao) + '<span class="time">秒</span>';
+  oSpan.innerHTML = str;
+  if(second==1){
+      second= Math.floor((newTime - oldTime) / 1000)
+  }
+  }, 1000);
+
+
+ }
+ getDate();
+  
+    </script>
+</body>
+</html>

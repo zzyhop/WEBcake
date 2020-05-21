@@ -1,0 +1,41 @@
+*{
+    margin: 0;padding: 0;
+}
+.container li{
+    cursor: pointer;
+}
+.font,.span{
+    font-size: 13px;
+    line-height: 20px;
+    text-align: center;
+    cursor: pointer;
+}
+.font{
+    color: #684029;
+}
+.span{
+    color: #BB9772;
+}
+.font:hover{
+    color: #BB9772;
+}
+.entrance{
+    text-align: center;
+}
+
+.entrance a{
+    display: inline-block;
+    border: 1px solid #D5BFA7;
+    border-radius: 100px;
+    padding: 0 6px 0 8px;
+    color: #D5BFA7;
+    margin: 0px 3px;
+}
+.guc {
+    margin-top: 10px;
+    display: block;
+    text-align: center;
+}
+.guc img{
+    width: 25px;
+}
